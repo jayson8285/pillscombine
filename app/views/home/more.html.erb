@@ -1,0 +1,55 @@
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="/home/index">pillscombine</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <% if user_signed_in? %>
+          <%= current_user.email %>
+          <%= link_to "로그아웃", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "로그인", user_session_path %>
+        <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!--영양제 종류-->
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="루테인" id="defaultCheck1">
+  <label class="form-check-label" for="defaultCheck1">
+    루테인
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="비타민C" id="defaultCheck2">
+  <label class="form-check-label" for="defaultCheck2">
+    비타민C
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="비타민C" id="defaultCheck3">
+  <label class="form-check-label" for="defaultCheck3">
+    영양제입력
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="비타민C" id="defaultCheck4">
+  <label class="form-check-label" for="defaultCheck4">
+    영양제입력
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="비타민C" id="defaultCheck5">
+  <label class="form-check-label" for="defaultCheck5">
+    영양제입력
+  </label>
+</div>
+
+
+
+<a class="btn btn-primary" href="/users/sign_up" role="button">내조합 확인</a>

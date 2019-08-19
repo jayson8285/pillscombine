@@ -1,0 +1,71 @@
+          <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="/posts/index">뒤로</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <% if user_signed_in? %>
+          <%= current_user.email %>
+          <%= link_to "로그아웃", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "로그인", user_session_path %>
+        <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+      
+      
+      
+ <div class="container">
+  <div><%= @post.email %></div>
+ 
+    <%= @post.title %>
+
+    <div>
+        나도궁금했어요 <%= @post.like_users.count %>
+    <a href="/posts/<%= @post.id %>/likes">나도궁금했어요<a>
+    </div>
+    </div>
+
+    <hr>
+
+     <div class="container">
+<form action="<%= post_comments_path(@post) %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= current_user.email %>
+    <input type="text" name="body" class="form-control">
+    <input type="hidden" name="email" value="<%= current_user.email %>">
+    <button type="submit" class="btn btn-primary">입력</button>
+</form>
+</div>
+
+<hr>
+
+ <div class="container">
+<h3>의견<%= @post.comments.count %></h3>
+</div>
+
+<hr>
+
+ <div class="container">
+<% @post.comments.each do |comment| %>
+<div>
+    <img src="/img/01.jpg" alt="..." width="50px" height="50px">
+<%= comment.email %>
+<br>
+<%= comment.body %>
+</div>
+   <div>
+        나도궁금했어요 <%= @post.like_users.count %>
+<a href="/posts/<%= @post.id %>/likes">나도궁금했어요<a>
+        <a href="/comments/<%= comment.id %>" data-method="delete">삭제</a>
+
+    </div>
+    <hr>
+<% end %>
+</div>

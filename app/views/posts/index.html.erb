@@ -1,0 +1,57 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/posts/index"><%= current_user.email %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            
+    <a class="btn btn-primary" href="/posts/edit" role="button">설정</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <header class="masthead text-center text-white">
+    <div class="masthead-content">
+          <div class="container">
+      <a href="#">섭취하고 있는 약품</a>
+  </div>
+    <div class="container">
+      <a href="#">조합순위</a>
+  </div>
+    </div>
+  </header>
+
+<div class="container">
+<form action="/posts/create" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div><% if user_signed_in? %>
+          <%= current_user.email %>
+        <% end %>
+        </div>
+    <input type="text" name="title" class="form-control">
+    <input type="hidden" name="email" value="<%= current_user.email %>">
+    <button type="submit" class="btn btn-primary">입력</button>
+</form>
+<hr>
+</div>
+
+
+<div class="container">
+<% @posts.each do |post| %>
+<!--게시글을 작성한 작성자 이메일이 표시되도록-->
+
+    <a href="/posts/<%= post.id %>/show"><%= post.title %></a>  
+    <%= post.email %>
+    <div>
+        의견22
+    나도궁금했어요22
+    </div>
+    <hr>
+<% end %>
+ </div>
